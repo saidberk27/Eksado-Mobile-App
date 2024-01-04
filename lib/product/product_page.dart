@@ -1,4 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/custom_fab.dart';
+import '../widgets/custom_list_tile.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({
@@ -8,13 +12,31 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text('Ürün Ana Sayfa'),
+      body: Column(
+        children: [
+          CustomListTile(
+              title: "Ürünleri Görüntüle",
+              onTap: () {
+                if (kDebugMode) {
+                  print("Müşteri Ekleme Butonuna Basıldı");
+                }
+              }),
+          CustomListTile(
+              title: "Aktif Siparişler",
+              onTap: () {
+                if (kDebugMode) {
+                  print("Aktif Siparişler Butonuna Basıldı");
+                }
+              }),
+        ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text('Ürün Ekle'),
-        icon: const Icon(Icons.add),
+      floatingActionButton: CustomFAB(
+        label: "Ürün Ekle",
+        onPressed: () {
+          if (kDebugMode) {
+            print("Müşteri Ekleme Butonuna Basıldı");
+          }
+        },
       ),
     );
   }

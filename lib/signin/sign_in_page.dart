@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
 import '../firebase/auth/auth_service.dart ';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AuthScreen(),
-    );
-  }
-}
-
-class AuthScreen extends StatelessWidget {
+class SignInPage extends StatelessWidget {
   final AuthService _authService = AuthService();
 
-  AuthScreen({super.key});
+  SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {

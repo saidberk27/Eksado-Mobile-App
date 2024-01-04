@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
         title: title,
         debugShowCheckedModeBanner: false,
         theme: LightTheme.theme,
-        home: AuthScreen());
+        home: const HomePage());
   }
 }
