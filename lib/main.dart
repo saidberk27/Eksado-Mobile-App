@@ -1,9 +1,15 @@
 import 'package:eksado_main/home/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'firebase_options.dart';
+import 'signin/sign_in_page.dart';
 import 'themes/light_theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -16,6 +22,6 @@ class MyApp extends StatelessWidget {
         title: title,
         debugShowCheckedModeBanner: false,
         theme: LightTheme.theme,
-        home: const HomePage());
+        home: AuthScreen());
   }
 }

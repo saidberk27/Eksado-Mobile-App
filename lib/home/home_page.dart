@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage>
           labelStyle: LightTheme.defaultTextTheme.bodyLarge,
           controller: _tabController,
           tabs: const [
-            Tab(text: 'Müşteri İşlemleri'),
-            Tab(text: 'Ürün Takibi'),
+            Tab(text: 'Müşteri'),
+            Tab(text: 'Ürün'),
             Tab(text: 'Muhasebe'),
           ],
           onTap: (index) {
