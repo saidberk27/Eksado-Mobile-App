@@ -2,16 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
-  // Create a new document with auto-generated documentId
   Future<String> createDocument(
       String collection, Map<String, dynamic> data) async {
     print(data);
-    DocumentReference documentReference =
-        await FirebaseFirestore.instance.collection(collection).add(data);
+
+    // Generate a new document ID
+    String documentId =
+        FirebaseFirestore.instance.collection(collection).doc().id;
+
+    // Include the document ID in the data
+    data['documentId'] = documentId;
+
+    // Add the document to Firestore
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(documentId)
+        .set(data);
+
     if (kDebugMode) {
-      print('Document created with id: ${documentReference.id}');
+      print('Document created with id: $documentId');
     }
-    return documentReference.id;
+
+    return documentId;
   }
 
   // Read a document

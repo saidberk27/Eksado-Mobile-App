@@ -1,20 +1,20 @@
+import 'package:eksado_main/product/product_model.dart';
 import 'package:eksado_main/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'customer_model.dart';
-import 'customer_viewmodel.dart';
+import 'product_viewmodel.dart';
 
-class CustomerList extends StatefulWidget {
-  const CustomerList({super.key});
+class ProductList extends StatefulWidget {
+  const ProductList({super.key});
 
   @override
-  State<CustomerList> createState() => _CustomerListState();
+  State<ProductList> createState() => _ProductListState();
 }
 
-class _CustomerListState extends State<CustomerList> {
-  CustomerVM vm = CustomerVM();
-  Future<List<Customer>> _getCustomers() {
-    return vm.getCustomers();
+class _ProductListState extends State<ProductList> {
+  ProductVM vm = ProductVM();
+  Future<List<Product>> _getProducts() {
+    return vm.getProducts();
   }
 
   @override
@@ -28,7 +28,7 @@ class _CustomerListState extends State<CustomerList> {
             height: 120,
           )),
       body: FutureBuilder(
-        future: _getCustomers(),
+        future: _getProducts(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -43,7 +43,7 @@ class _CustomerListState extends State<CustomerList> {
                     ),
                     child: ExpansionTile(
                       title: Text(
-                        "${snapshot.data![index].name} ${snapshot.data![index].surname}",
+                        snapshot.data![index].productName,
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class _CustomerListState extends State<CustomerList> {
                         ),
                       ),
                       subtitle: Text(
-                        snapshot.data![index].company,
+                        snapshot.data![index].productClass,
                         style: const TextStyle(
                           fontStyle: FontStyle.italic,
                           color: LightTheme.tertiaryColor,
@@ -66,24 +66,20 @@ class _CustomerListState extends State<CustomerList> {
                                 defaultVerticalAlignment:
                                     TableCellVerticalAlignment.middle,
                                 children: [
-                                  _buildTableRow(
-                                      "Şirket:", snapshot.data![index].company),
-                                  _buildTableRow(
-                                      "E-Posta:", snapshot.data![index].email),
-                                  _buildTableRow("Telefon:",
-                                      snapshot.data![index].phoneNumber),
-                                  _buildTableRow(
-                                    "Cinsiyet:",
-                                    snapshot.data![index].isMale
-                                        ? "Erkek"
-                                        : "Kadın",
-                                  ),
+                                  _buildTableRow("Ürün Sınıfı",
+                                      snapshot.data![index].productClass),
+                                  _buildTableRow("Cam Seçeneği:",
+                                      snapshot.data![index].glassOption),
+                                  _buildTableRow("Çatı Kaplaması:",
+                                      snapshot.data![index].roofCovering),
+                                  _buildTableRow("Akıllı Ev Seçeneği:",
+                                      snapshot.data![index].smartHomeOption),
                                 ],
                               ),
                               ElevatedButton(
-                                  // Delete customer button
+                                  // Delete Product button
                                   onPressed: () {
-                                    vm.deleteCustomer(snapshot.data![index]);
+                                    vm.deleteProduct(snapshot.data![index]);
                                     Navigator.of(context).pop();
                                   },
                                   style: ButtonStyle(
@@ -91,7 +87,7 @@ class _CustomerListState extends State<CustomerList> {
                                         MaterialStateProperty.all<Color>(
                                             LightTheme.warningColor),
                                   ),
-                                  child: const Text("Müşteriyi Sil"))
+                                  child: const Text("Ürünü Sil"))
                             ],
                           ),
                         ),

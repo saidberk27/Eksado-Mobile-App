@@ -12,7 +12,8 @@ class Customer {
       required this.email,
       required this.phoneNumber,
       required this.company,
-      required this.isMale});
+      required this.isMale,
+      this.id});
 
   factory Customer.fromJson(Map<String, dynamic> json) {
     return Customer(
@@ -22,6 +23,8 @@ class Customer {
       phoneNumber: json['phoneNumber'],
       company: json['company'],
       isMale: json['isMale'],
+      id: json[
+          'documentId'], // Id sadece veritabanindan okundugunda set edilir.
     );
   }
 
@@ -32,7 +35,7 @@ class Customer {
       'email': email,
       'phoneNumber': phoneNumber,
       'company': company,
-      'isMale': isMale,
+      'isMale': isMale, //yerelde kullanilan fonksiyonlar icin id gerekli degil.
     };
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/custom_page_route.dart';
 import '../widgets/custom_fab.dart';
+import 'customer_list.dart';
 
 class CustomerPage extends StatelessWidget {
   const CustomerPage({
@@ -20,14 +21,16 @@ class CustomerPage extends StatelessWidget {
               title: "Müşterileri Görüntüle",
               onTap: () {
                 if (kDebugMode) {
-                  print("Müşteri Ekleme Butonuna Basıldı");
+                  print("Müşterileri Görüntüle Butonuna Basıldı");
                 }
+                Navigator.push(
+                    context, customPageRoute(page: const CustomerList()));
               }),
           CustomListTile(
-              title: "Aktif Siparişler",
+              title: "Müşteri Grafikleri",
               onTap: () {
                 if (kDebugMode) {
-                  print("Aktif Siparişler Butonuna Basıldı");
+                  print("Müşteri Grafikleri Butonuna Basıldı");
                 }
               }),
         ],

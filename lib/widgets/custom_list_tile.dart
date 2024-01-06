@@ -15,27 +15,33 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: 75,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 3,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
         ),
-        child: ListTile(
-          title: Text(
-            title,
-            style: LightTheme.defaultTextTheme.bodyLarge!
-                .copyWith(color: LightTheme.tertiaryColor),
+        child: Container(
+          height: 75,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: 3,
+                blurRadius: 7,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-          trailing:
-              const Icon(Icons.arrow_right, color: LightTheme.secondaryColor),
+          child: ListTile(
+            title: Text(
+              title,
+              style: LightTheme.defaultTextTheme.bodyLarge!
+                  .copyWith(color: LightTheme.tertiaryColor),
+            ),
+            trailing:
+                const Icon(Icons.arrow_right, color: LightTheme.secondaryColor),
+          ),
         ),
       ),
     );
