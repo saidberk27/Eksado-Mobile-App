@@ -1,6 +1,10 @@
+import 'package:eksado_main/customer/customer_viewmodel.dart';
 import 'package:eksado_main/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../widgets/custom_form.dart';
+import '../customer_model.dart';
 
 class AddNewCustomerForm extends StatefulWidget {
   const AddNewCustomerForm({super.key});
@@ -11,6 +15,30 @@ class AddNewCustomerForm extends StatefulWidget {
 
 class _AddNewCustomerFormState extends State<AddNewCustomerForm> {
   final _formKey = GlobalKey<FormState>();
+  final CustomerVM vm = CustomerVM();
+
+  // Create TextEditingController instances for each form field
+  final TextEditingController _customerNameController = TextEditingController();
+  final TextEditingController _customerSurnameController =
+      TextEditingController();
+  final TextEditingController _customerCompanyController =
+      TextEditingController();
+  final TextEditingController _customerEmailController =
+      TextEditingController();
+  final TextEditingController _customerPhoneController =
+      TextEditingController();
+
+  bool _isMale = true;
+  @override
+  void dispose() {
+    // Dispose the TextEditingController instances to avoid memory leaks
+    _customerNameController.dispose();
+    _customerSurnameController.dispose();
+    _customerCompanyController.dispose();
+    _customerEmailController.dispose();
+    _customerPhoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,91 +49,44 @@ class _AddNewCustomerFormState extends State<AddNewCustomerForm> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Müşteri Adı',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Lütfen müşteri adını girin';
-                  }
-                  return null;
-                },
+              CustomTextFormField(
+                labelText: "Müşteri Adı",
+                validatorText: "Lütfen müşteri adını girin",
+                controller:
+                    _customerNameController, // Assign the controller to the form field
               ),
               const SizedBox(height: 10.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Müşteri Soyadı',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Lütfen müşteri soyadını girin';
-                  }
-                  return null;
-                },
+              CustomTextFormField(
+                labelText: "Müşteri Soyadı",
+                validatorText: "Lütfen müşteri Soyadını girin",
+                controller:
+                    _customerSurnameController, // Assign the controller to the form field
               ),
               const SizedBox(height: 10.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Müşteri Firması',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Lütfen müşteri firmasını girin';
-                  }
-                  return null;
-                },
+              CustomTextFormField(
+                labelText: "Müşteri Firması",
+                validatorText: "Lütfen müşteri firmasını girin",
+                controller:
+                    _customerCompanyController, // Assign the controller to the form field
               ),
               const SizedBox(height: 10.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Müşteri Maili',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Lütfen müşteri mailini girin';
-                  }
-                  return null;
-                },
+              CustomTextFormField(
+                labelText: "Müşteri Maili",
+                validatorText: "Lütfen müşteri mailini girin",
+                controller:
+                    _customerEmailController, // Assign the controller to the form field
               ),
               const SizedBox(height: 10.0),
-              TextFormField(
-                keyboardType:
-                    TextInputType.number, // Set keyboard type to numeric
-                inputFormatters: [
-                  FilteringTextInputFormatter
-                      .digitsOnly, // Allow only numeric input
-                ],
-                decoration: InputDecoration(
-                  labelText: 'Müşteri Telefonu',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Lütfen müşteri telefonunu girin';
-                  }
-                  return null;
-                },
+              CustomTextFormField(
+                labelText: "Müşteri Telefonu",
+                validatorText: "Lütfen müşteri telefonunu girin",
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                controller:
+                    _customerPhoneController, // Assign the controller to the form field
               ),
+              const SizedBox(height: 10.0),
+              genderBox(),
               const SizedBox(height: 10.0),
               SizedBox(
                 height: 75,
@@ -113,7 +94,21 @@ class _AddNewCustomerFormState extends State<AddNewCustomerForm> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Form is valid, perform desired action
+                      String customerName = _customerNameController.text;
+                      String customerSurname = _customerSurnameController.text;
+                      String customerCompany = _customerCompanyController.text;
+                      String customerEmail = _customerEmailController.text;
+                      String customerPhone = _customerPhoneController.text;
+
+                      Customer customer = Customer(
+                          name: customerName,
+                          surname: customerSurname,
+                          company: customerCompany,
+                          email: customerEmail,
+                          phoneNumber: customerPhone,
+                          isMale: _isMale);
+
+                      vm.addCustomer(customer);
                     }
                   },
                   child: Text(
@@ -126,6 +121,31 @@ class _AddNewCustomerFormState extends State<AddNewCustomerForm> {
           ),
         ),
       ),
+    );
+  }
+
+  Row genderBox() {
+    return Row(
+      children: [
+        Checkbox(
+          value: _isMale,
+          onChanged: (value) {
+            setState(() {
+              _isMale = value!;
+            });
+          },
+        ),
+        Text('Erkek'),
+        Checkbox(
+          value: !_isMale,
+          onChanged: (value) {
+            setState(() {
+              _isMale = !value!;
+            });
+          },
+        ),
+        Text('Kadın'),
+      ],
     );
   }
 }

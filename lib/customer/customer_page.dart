@@ -3,6 +3,7 @@ import 'package:eksado_main/widgets/custom_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/custom_page_route.dart';
 import '../widgets/custom_fab.dart';
 
 class CustomerPage extends StatelessWidget {
@@ -34,26 +35,7 @@ class CustomerPage extends StatelessWidget {
       floatingActionButton: CustomFAB(
         label: "Müşteri Ekle",
         onPressed: () {
-          Navigator.push(
-              context,
-              PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      AddNewCustomerPage(),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    const begin = Offset(1.0, 0.0);
-                    const end = Offset.zero;
-                    const curve = Curves.easeInOut;
-                    var tween = Tween(begin: begin, end: end)
-                        .chain(CurveTween(curve: curve));
-
-                    var offsetAnimation = animation.drive(tween);
-
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: child,
-                    );
-                  }));
+          Navigator.push(context, customPageRoute(page: AddNewCustomerPage()));
         },
       ),
     );
