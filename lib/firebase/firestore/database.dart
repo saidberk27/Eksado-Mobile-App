@@ -6,14 +6,11 @@ class Database {
       String collection, Map<String, dynamic> data) async {
     print(data);
 
-    // Generate a new document ID
     String documentId =
         FirebaseFirestore.instance.collection(collection).doc().id;
 
-    // Include the document ID in the data
     data['documentId'] = documentId;
 
-    // Add the document to Firestore
     await FirebaseFirestore.instance
         .collection(collection)
         .doc(documentId)
@@ -26,7 +23,6 @@ class Database {
     return documentId;
   }
 
-  // Read a document
   Future<DocumentSnapshot> readDocument(
       String collection, String documentId) async {
     DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
@@ -39,7 +35,6 @@ class Database {
     return documentSnapshot;
   }
 
-  // Update a document
   Future<void> updateDocument(
       String collection, String documentId, Map<String, dynamic> data) async {
     await FirebaseFirestore.instance
@@ -51,7 +46,6 @@ class Database {
     }
   }
 
-  // Delete a document
   Future<void> deleteDocument(String collection, String documentId) async {
     await FirebaseFirestore.instance
         .collection(collection)
@@ -62,7 +56,6 @@ class Database {
     }
   }
 
-  // Get all documents of a collection
   Future<List<DocumentSnapshot>> getAllDocuments(String collection) async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection(collection).get();
@@ -71,5 +64,15 @@ class Database {
       print('All documents in collection: $documents');
     }
     return documents;
+  }
+
+  Future<QuerySnapshot> getDocumentsWithFilter(
+      {required String collectionName,
+      required String field,
+      required String equalTo}) async {
+    return await FirebaseFirestore.instance
+        .collection(collectionName)
+        .where(field, isEqualTo: equalTo)
+        .get();
   }
 }

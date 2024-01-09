@@ -1,3 +1,7 @@
+import 'package:eksado_main/accounting/accounting_log_list.dart';
+import 'package:eksado_main/accounting/add_new_account_log.dart';
+import 'package:eksado_main/accounting/default_account_values.dart';
+import 'package:eksado_main/utils/custom_page_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -15,48 +19,40 @@ class AccountingPage extends StatelessWidget {
       body: Column(
         children: [
           CustomListTile(
-              title: "Hammadde Alımı",
+              title: "Muhasebe Grafikleri",
               onTap: () {
                 if (kDebugMode) {
-                  print("Hammadde Alımı Butonuna Basıldı");
+                  print("Muhasebe Grafikleri Butonuna Basıldı");
                 }
               }),
           CustomListTile(
-              title: "Ürün Satışı",
+              title: "Muhasebe Kayıtları",
               onTap: () {
                 if (kDebugMode) {
-                  print("Ürün Satışı Butonuna Basıldı");
+                  print("Muhsabe Kayıtları Butonuna Basıldı");
                 }
+                Navigator.push(
+                    context, customPageRoute(page: const AccountLogList()));
               }),
           CustomListTile(
-              title: "Gelir",
+              title: "Varsayılan Muhasebe Değerleri",
               onTap: () {
                 if (kDebugMode) {
-                  print("Gelir Butonuna Basıldı");
+                  print("Muhsabe Kayıtları Butonuna Basıldı");
                 }
-              }),
-          CustomListTile(
-              title: "Gider",
-              onTap: () {
-                if (kDebugMode) {
-                  print("Gider Butonuna Basıldı");
-                }
-              }),
-          CustomListTile(
-              title: "Borç",
-              onTap: () {
-                if (kDebugMode) {
-                  print("Borç Butonuna Basıldı");
-                }
+                Navigator.push(
+                    context, customPageRoute(page: DefaultAccountValuesPage()));
               }),
         ],
       ),
       floatingActionButton: CustomFAB(
-        label: "Muhasebe Ekle",
+        label: "Muhasebe Kaydı Ekle",
         onPressed: () {
           if (kDebugMode) {
-            print("Müşteri Ekleme Butonuna Basıldı");
+            print("Muhasebe Ekleme Butonuna Basıldı");
           }
+          Navigator.push(
+              context, customPageRoute(page: const AddNewAccountLog()));
         },
       ),
     );

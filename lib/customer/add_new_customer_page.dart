@@ -131,6 +131,8 @@ class _AddNewCustomerFormState extends State<AddNewCustomerForm> {
                       Navigator.pop(context);
                       Navigator.push(
                           context, customPageRoute(page: const CustomerList()));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Müşteri başarıyla eklendi')));
                     }
                   },
                   child: Text(

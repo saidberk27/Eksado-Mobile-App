@@ -1,5 +1,4 @@
 import 'package:eksado_main/home/home_page.dart';
-import 'package:eksado_main/product/product_page.dart';
 import 'package:eksado_main/product/product_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -168,6 +167,8 @@ class _AddNewproductFormState extends State<AddNewproductForm> {
                     Navigator.pop(context);
                     Navigator.push(
                         context, customPageRoute(page: const HomePage()));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Ürün başarıyla eklendi')));
                   }
                 },
                 child: Text('Kaydet'),
