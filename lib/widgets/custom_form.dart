@@ -7,13 +7,14 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller; // Added controller argument
-
+  final bool isRequired;
   CustomTextFormField({
     Key? key,
     required this.labelText,
     required this.validatorText,
     this.keyboardType = TextInputType.text,
     this.inputFormatters = const <TextInputFormatter>[],
+    this.isRequired = true,
     required this.controller, // Added controller argument
   }) : super(key: key);
 
@@ -31,6 +32,9 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       validator: (value) {
+        if (!isRequired) {
+          return null;
+        }
         if (value!.isEmpty) {
           return validatorText;
         }

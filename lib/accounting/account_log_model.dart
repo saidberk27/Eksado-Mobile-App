@@ -1,6 +1,6 @@
 class AccountLog {
   String accountType;
-  double amount;
+  int amount;
   String date;
   String description;
   String? id;

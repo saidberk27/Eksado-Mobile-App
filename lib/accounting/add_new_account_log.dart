@@ -1,5 +1,6 @@
 import 'package:eksado_main/accounting/account_viewmodel.dart';
 import 'package:eksado_main/accounting/accounting_log_list.dart';
+import 'package:eksado_main/accounting/demo_data_creator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -81,8 +82,8 @@ class _AddNewproductFormState extends State<AddNewproductForm> {
               const SizedBox(height: 10.0),
               CustomTextFormField(
                 labelText: "Açıklama (İsteğe Bağlı)",
-                validatorText: "Açıklama Girin( İsteğe Bağlı )",
-
+                validatorText: "Açıklama Girin( İsteğe Bağlı)",
+                isRequired: false,
                 controller:
                     _descriptionController, // Assign the controller to the form field
               ),
@@ -92,9 +93,10 @@ class _AddNewproductFormState extends State<AddNewproductForm> {
                   if (_formKey.currentState!.validate()) {
                     vm.addAccountLog(AccountLog(
                         accountType: _accountType,
-                        amount: double.parse(_amountController.text),
+                        amount: int.parse(_amountController.text),
                         date: DateTime.now().toString(),
-                        description: _descriptionController.text));
+                        description:
+                            _descriptionController.text ?? "Açıklama yok"));
                     Navigator.pop(context);
                     Navigator.push(
                         context, customPageRoute(page: const AccountLogList()));
@@ -104,6 +106,12 @@ class _AddNewproductFormState extends State<AddNewproductForm> {
                   }
                 },
                 child: const Text('Kaydet'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  generateAndUploadDemoData();
+                },
+                child: const Text('Demo Data Oluştur'),
               ),
             ],
           ),

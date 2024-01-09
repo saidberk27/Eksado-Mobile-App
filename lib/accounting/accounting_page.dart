@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/custom_fab.dart';
 import '../widgets/custom_list_tile.dart';
+import 'account_stats_page.dart';
 
 class AccountingPage extends StatelessWidget {
   const AccountingPage({
@@ -24,6 +25,8 @@ class AccountingPage extends StatelessWidget {
                 if (kDebugMode) {
                   print("Muhasebe Grafikleri Butonuna Basıldı");
                 }
+                Navigator.push(
+                    context, customPageRoute(page: const AccountStatsPage()));
               }),
           CustomListTile(
               title: "Muhasebe Kayıtları",
