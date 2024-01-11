@@ -1,3 +1,4 @@
+import 'package:eksado_main/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomFAB extends StatelessWidget {
@@ -16,6 +17,8 @@ class CustomFAB extends StatelessWidget {
       onPressed: onPressed,
       label: Text(label),
       icon: const Icon(Icons.add),
+      backgroundColor: LightTheme.secondaryColor,
+      foregroundColor: Colors.white,
     );
   }
 }

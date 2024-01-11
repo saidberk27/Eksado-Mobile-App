@@ -90,6 +90,9 @@ class _CustomerListState extends State<CustomerList> {
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             LightTheme.warningColor),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
                                   ),
                                   child: const Text("Müşteriyi Sil"))
                             ],

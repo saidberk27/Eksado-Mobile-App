@@ -86,6 +86,9 @@ class _ProductListState extends State<ProductList> {
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             LightTheme.warningColor),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
                                   ),
                                   child: const Text("Ürünü Sil"))
                             ],

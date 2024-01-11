@@ -23,11 +23,35 @@ class LightTheme {
   }
 
   static const TextTheme defaultTextTheme = TextTheme(
-    displayLarge: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700),
-    displayMedium: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-    displaySmall: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
-    bodyLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
-    bodyMedium: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
-    bodySmall: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+    displayLarge: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Arial',
+    ),
+    displayMedium: TextStyle(
+      fontSize: 20.0,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'Arial',
+    ),
+    displaySmall: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'Arial',
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Arial',
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Arial',
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.0,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Arial',
+    ),
   );
 }

@@ -26,13 +26,6 @@ class ProductPage extends StatelessWidget {
                 Navigator.push(
                     context, customPageRoute(page: const ProductList()));
               }),
-          CustomListTile(
-              title: "Aktif Siparişler",
-              onTap: () {
-                if (kDebugMode) {
-                  print("Aktif Siparişler Butonuna Basıldı");
-                }
-              }),
         ],
       ),
       floatingActionButton: CustomFAB(

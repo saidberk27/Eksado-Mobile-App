@@ -107,12 +107,6 @@ class _AddNewproductFormState extends State<AddNewproductForm> {
                 },
                 child: const Text('Kaydet'),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  generateAndUploadDemoData();
-                },
-                child: const Text('Demo Data Oluştur'),
-              ),
             ],
           ),
         ),

@@ -84,6 +84,9 @@ class _AccountLogListState extends State<AccountLogList> {
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             LightTheme.warningColor),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
                                   ),
                                   child: const Text("Kaydı Sil"))
                             ],

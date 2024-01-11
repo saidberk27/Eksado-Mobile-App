@@ -26,13 +26,6 @@ class CustomerPage extends StatelessWidget {
                 Navigator.push(
                     context, customPageRoute(page: const CustomerList()));
               }),
-          CustomListTile(
-              title: "Müşteri Grafikleri",
-              onTap: () {
-                if (kDebugMode) {
-                  print("Müşteri Grafikleri Butonuna Basıldı");
-                }
-              }),
         ],
       ),
       floatingActionButton: CustomFAB(
