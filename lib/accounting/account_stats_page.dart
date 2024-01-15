@@ -73,7 +73,6 @@ class _AccountStatsPageState extends State<AccountStatsPage> {
             NumericDisplay(
               title: "Net Kar",
               future: AccountingStats().getNetProfitStr(),
-              currencySign: false,
             ),
             Column(
               children: [
@@ -171,8 +170,7 @@ class NumericDisplay extends StatelessWidget {
       padding: const EdgeInsets.all(30.0),
       child: Card(
           child: Container(
-        padding: EdgeInsets.all(20),
-        height: MediaQuery.of(context).size.height / 5,
+        height: MediaQuery.of(context).size.height / 4,
         width: MediaQuery.of(context).size.width / 3 - 10,
         child: Column(
           children: [
@@ -191,12 +189,10 @@ class NumericDisplay extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Center(
-                      child: Expanded(
-                    child: Text(
-                      "${snapshot.data}" + (currencySign ? " ₺" : ""),
-                      style: LightTheme.defaultTextTheme.displayMedium!
-                          .copyWith(fontSize: 16),
-                    ),
+                      child: Text(
+                    "${snapshot.data}" + (currencySign ? " ₺" : ""),
+                    style: LightTheme.defaultTextTheme.displayMedium!
+                        .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
                   ));
                 } else {
                   return Center(
